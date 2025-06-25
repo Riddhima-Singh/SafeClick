@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>URL History</title>
+</head>
+<style>
+    /* Your card style */
+
+body {
+    background-color: #272a41;
+    color: white;
+}    
+
+h1 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px; /* Adds space below the heading */
+    color: white;
+}
+
+ul {
+    list-style-type: disc;
+    padding-left: 20px;
+}
+
+.file-history {
+    display: flex;
+    flex-direction: column; /* Ensures items stack vertically */
+}
+
+</style>
+<body>
+    <h1>URL History</h1>
+    <ul id="urlHistory"></ul>
+
+    <script>
+        function loadURLHistory() {
+            const list = document.getElementById('urlHistory');
+            const history = JSON.parse(localStorage.getItem('url')) || [];
+            list.innerHTML = '';
+            
+
+            history.forEach(item => {
+                const li = document.createElement('li');
+                li.textContent = item;
+                list.appendChild(li);
+            });
+        }
+
+        // Load the history when the page is loaded
+        window.onload = loadURLHistory;
+    </script>
+</body>
+</html>

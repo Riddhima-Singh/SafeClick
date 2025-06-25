@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>File History</title>
+  <style>
+    /* Your card style */
+
+body {
+    background-color: #272a41;
+}    
+.history-card {
+    width: 600px;
+    min-height: 180px;
+    background: linear-gradient(135deg, #8f7cb9, #3a3d58);
+    border-radius: 20px;
+    padding: 30px 20px;
+    color: white;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    margin: 50px auto; /* centers the box horizontally */
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    margin: 20px auto;
+}
+
+h1 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px; /* Adds space below the heading */
+    color: white;
+}
+
+ul {
+    list-style-type: disc;
+    padding-left: 20px;
+}
+
+.file-history {
+    display: flex;
+    flex-direction: column; /* Ensures items stack vertically */
+}
+
+  </style>
+</head>
+<body>
+  <h1>File History</h1>
+  <div id="fileHistory"></div>
+
+  <script>
+    function loadFileHistory() {
+      const container = document.getElementById('fileHistory');
+      const history = JSON.parse(localStorage.getItem('file')) || [];
+      container.innerHTML = '';
+
+      if (history.length > 0) {
+        const card = document.createElement('div');
+        card.className = 'history-card';
+
+        const list = document.createElement('ul');
+        history.forEach(item => {
+          const listItem = document.createElement('li');
+          listItem.textContent = item;
+          list.appendChild(listItem);
+        });
+
+        card.appendChild(list);
+        container.appendChild(card);
+      }
+    }
+
+    window.onload = loadFileHistory;
+  </script>
+</body>
+</html>
